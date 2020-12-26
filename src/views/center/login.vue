@@ -29,8 +29,8 @@
           <div class="hand rgt"></div>
           <h1>用户登录</h1>
           <div class="form-group">
-            <input required="required" class="form-control" />
-            <label class="form-label">用户名</label>
+            <input required="required" class="form-control" v-model="mobile"/>
+            <label class="form-label">手机号</label>
           </div>
           <div class="form-group">
             <input
@@ -38,10 +38,11 @@
               type="password"
               required="required"
               class="form-control"
+              v-model="password"
             />
             <label class="form-label">密码</label>
             <p class="alert">验证未通过！</p>
-            <button class="btn">登 录</button>
+            <a class="btn" @click="submit">登 录</a>
           </div>
         </form>
       </div>
@@ -49,9 +50,49 @@
   </div>
 </template>
 <script>
+import Vue from 'vue';
+import { Toast } from 'vant';
+
+Vue.use(Toast);
+
 export default {
+  data(){
+    return {
+      mobile:"",
+      password:"",
+    }
+  },
+  methods:{
+    submit(){
+      let obj = {};
+      obj.mobile = this.mobile;
+      obj.password = this.password;
+      console.log(this.mobile);
+      console.log(obj);
+      this.$http.post("/v1/login",obj).then(ret=>{
+        console.log(ret);
+        if(ret.data.code == 0){
+          Toast.success(ret.data.msg);
+          this.$store.commit("setJwt",ret.data.jwt);
+          setTimeout(() => {
+            // 判断有没有参数地址
+            if(this.$route.query.toUrl){
+              this.$router.push(this.$route.query.toUrl);
+            }else{
+              // 没有就跳个人中心
+              this.$router.push("/center")
+            }
+          }, 2000);
+        }else{
+          Toast.fail(ret.data.msg);
+
+        }
+      })
+    }
+  },
   created () {
         this.$store.commit('isShowFooter',false);
+        
     },
     beforeDestroy () {
         this.$store.commit('isShowFooter',true)

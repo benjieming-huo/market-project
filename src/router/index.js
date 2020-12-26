@@ -27,4 +27,17 @@ const router = new VueRouter({
  
 })
 
+// 路由守卫(全局)
+router.beforeEach((to,from,next)=>{
+  let arr = [
+
+  ];
+  if(arr.includes(to.path)  && !localStorage.getItem("jwt") ){
+    router.push({path:"/login",query:{toUrl:to.fullPath}})
+  }else{
+    // 不满足不跳
+    next();
+  }
+})
+
 export default router;
