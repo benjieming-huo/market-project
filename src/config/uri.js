@@ -3,9 +3,10 @@ let prefix = "/api/";
 
 export default {
     // 获取首页信息
-    getHome: prefix +"/home",
+    getHome:prefix+"/other",
+    getPHP: prefix +"/getAirPortInfo.php",
     //获取其他数据
-    getOther:prefix+"/other",
+    getOther:prefix+"/home",
     //获取婴儿的数据
     getBaby:prefix+"/baby",
     //获取玩具数据
