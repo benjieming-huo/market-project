@@ -1,0 +1,145 @@
+<template>
+  <div id="box">
+    <h1>我的</h1>
+    <!-- banner -->
+    <div class="mypic">
+      <img src="../../assets/my.png" alt="" />
+      <h1 @click="change">欢迎登录</h1>
+      
+    </div>
+    <!-- 商品订单 -->
+    <div class="indent">
+      <span class="indent-img"
+        ><img src="../../assets/商品订单.png" alt=""
+      /></span>
+      <span class="indent-indent">商品订单</span>
+      <span class="indent-all">查看全部></span>
+      <hr />
+    </div>
+    <!--  组件 -->
+
+    <div class="listGuide">
+      <listGuide />
+    </div>
+
+    <!-- 列表 -->
+
+    <!-- 我的足迹 footprint -->
+    <!-- 我的地址 address  -->
+    <!-- 我的售后 after -->
+    <!-- 联系客服 service -->
+    <div class="list-box">
+      <span>我的足迹</span>&nbsp;
+      <span @click="footprint">></span>
+      <hr />
+    </div>
+    <div class="list-box">
+      <span>我的地址</span>&nbsp;
+      <span @click="address">></span>
+      <hr />
+    </div>
+    <div class="list-box">
+      <span>我的售后</span>&nbsp;
+      <span @click="after">></span>
+      <hr />
+    </div>
+    <div class="list-box">
+      <span>联系客服</span>&nbsp;
+      <span @click="service">></span>
+      <hr />
+    </div>
+  </div>
+</template>
+<script>
+// 导入菜单组件
+import listGuide from "../../components/list-guide";
+import Vue from "vue";
+export default {
+  data() {
+    return {
+      active: 0,
+    };
+  },
+  methods: {
+    //跳转登录
+    change(){
+      this.$router.push("/login")
+    },
+
+    footprint() {
+      console.log(111);
+    },
+    address() {
+      console.log(222);
+    },
+    after() {
+      console.log(333);
+    },
+    service() {
+      console.log(444);
+    },
+  },
+
+  components: {
+    listGuide,
+  },
+};
+</script>
+<style lang="scss" scoped>
+.listGuide {
+  position: relative;
+  display: block;
+  clear: both;
+}
+
+.list-box {
+  width: 100%;
+  display: block;
+  height: 20px;
+  margin-top: 30px;
+  float: left;
+}
+#box {
+  padding: 10px;
+}
+
+.mypic {
+  width: 90%;
+  margin-top: 20px;
+  height: 90px;
+  background: rgb(51, 51, 51);
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-top: 4px;
+  line-height: 90px;
+  position: relative;
+  h1 {
+    position: absolute;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: -10px;
+    color: aliceblue;
+    font-size: 16px;
+  }
+  span {
+    position: absolute;
+    display: inline-block;
+    margin-top: 26px;
+    margin-left: 10px;
+    color: aliceblue;
+    font-size: 12px;
+  }
+}
+.indent {
+  margin-top: 24px;
+  display: block;
+  height: 60px;
+  span {
+    display: inline-block;
+    width: 80px;
+  }
+  .indent-img {
+    margin-left: 4px;
+  }
+}
+</style>

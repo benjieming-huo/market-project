@@ -1,0 +1,65 @@
+{
+  "id": "2291963",
+  "name": "market",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "436239",
+      "name": "运动",
+      "font_class": "19",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "796492",
+      "name": "男装",
+      "font_class": "nanzhuang",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "796493",
+      "name": "女装",
+      "font_class": "nvzhuang",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "1079503",
+      "name": "数码",
+      "font_class": "shuma",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "7616272",
+      "name": "香水",
+      "font_class": "xiangshui",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "12687401",
+      "name": "咖啡",
+      "font_class": "icon-",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "14229967",
+      "name": "母婴",
+      "font_class": "muyingleimu",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
+      "icon_id": "18166232",
+      "name": "手提箱,箱包,手提包,行李包",
+      "font_class": "suitcase",
+      "unicode": "e8ba",
+      "unicode_decimal": 59578
+    }
+  ]
+}
