@@ -11,6 +11,7 @@ export default {
     //获取玩具数据
     getToys:prefix+"/toys",
     //获取家居数据
-    getFurniture:prefix+"/furniture"
-    // ...
+    getFurniture:prefix+"/furniture",
+    // 获取名
+    getData:prefix + "/userinfo"
 }

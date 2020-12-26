@@ -2,11 +2,15 @@
   <div id="box">
     <h1>我的</h1>
     <!-- banner -->
-    <div class="mypic">
-      <img src="../../assets/my.png" alt="" />
-      <h1 @click="change">欢迎登录</h1>
-      
+    <div class="mypic"> 
+      <img :src="userinfo.imginfo" v-if="userinfo.imginfo"/>
+      <img  v-if="!userinfo.imginfo" src="../../assets/my.png" alt="" />
+      <h1 @click="change" v-if="!userinfo.username">欢迎登录</h1>
+      <h1 v-if="userinfo.username">{{userinfo.username}}</h1>
+     
     </div>
+
+
     <!-- 商品订单 -->
     <div class="indent">
       <span class="indent-img"
@@ -54,20 +58,34 @@
 // 导入菜单组件
 import listGuide from "../../components/list-guide";
 import Vue from "vue";
+import url from "@/config/uri";
 export default {
   data() {
     return {
       active: 0,
+      userinfo: {},
     };
+  },
+  created() {
+    let jwt = localStorage.getItem("jwt");
+        
+    if (jwt) {
+      this.$http.get(url.getData).then((ret) => {
+        this.userinfo = ret.data;
+        console.log(ret.data);
+        console.log(this.userinfo);
+        console.log(this.userinfo.name);
+      });
+    }
   },
   methods: {
     //跳转登录
-    change(){
-      this.$router.push("/login")
+    change() {
+      this.$router.push("/login");
     },
 
     footprint() {
-      console.log(111);
+      // console.log(111);
     },
     address() {
       console.log(222);
@@ -86,6 +104,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+
 .listGuide {
   position: relative;
   display: block;
@@ -117,18 +136,18 @@ export default {
     position: absolute;
     display: inline-block;
     margin-left: 10px;
-    margin-top: -10px;
+    margin-top: -5px;
     color: aliceblue;
     font-size: 16px;
+    
   }
-  span {
-    position: absolute;
-    display: inline-block;
-    margin-top: 26px;
-    margin-left: 10px;
-    color: aliceblue;
-    font-size: 12px;
+  img{
+    height: 70px;
+    width: 80x;
+    border-radius: 50%;
+    margin-top: 10px;
   }
+ 
 }
 .indent {
   margin-top: 24px;
