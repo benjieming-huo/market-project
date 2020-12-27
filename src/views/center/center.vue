@@ -47,9 +47,9 @@
       <span @click="after">></span>
       <hr />
     </div>
-    <div class="list-box">
-      <span>联系客服</span>&nbsp;
-      <span @click="service">></span>
+    <div class="list-box" @click="exit">
+      <span >退出登录</span>&nbsp;
+      <span >></span>
       <hr />
     </div>
   </div>
@@ -70,11 +70,12 @@ export default {
     let jwt = localStorage.getItem("jwt");
         
     if (jwt) {
+      console.log(jwt);
       this.$http.get(url.getData).then((ret) => {
         this.userinfo = ret.data;
         console.log(ret.data);
         console.log(this.userinfo);
-        console.log(this.userinfo.name);
+        console.log(this.userinfo.username);
       });
     }
   },
@@ -93,9 +94,12 @@ export default {
     after() {
       console.log(333);
     },
-    service() {
-      console.log(444);
-    },
+    exit(){
+      if(confirm('确认退出？')){
+        this.userinfo={};
+        localStorage.setItem('jwt','')
+      }
+    }
   },
 
   components: {
