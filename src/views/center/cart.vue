@@ -1,7 +1,7 @@
 <template>
   <div id="box">
     <!-- 头 -->
-      <span @click="goBlack"> 返回 </span>
+       <div class="leftd iconfont icon-right" @click="change"></div>
 
     <div class="header">
       <h1>购物车</h1>
@@ -78,6 +78,7 @@
   </div>
 </template>
 <script>
+import "@/assets/ieon/iconfont.css";
 
 import Vue from 'vue';
 import { Stepper,SubmitBar } from 'vant';
@@ -93,7 +94,7 @@ export default {
     };
   },
   methods: {
-    goBlack() {
+   change() {
       this.$router.go(-1);
     },
     onSubmit(){
@@ -104,9 +105,7 @@ export default {
         this.$store.commit('isShowFooter',false);
         
     },
-    beforeDestroy () {
-        this.$store.commit('isShowFooter',true)
-    },
+ 
 };
 </script>
 <style lang="scss" scoped>
@@ -131,6 +130,17 @@ export default {
   position: fixed;
   bottom: 50px;
 }
-
+.leftd {
+  width: 45px;
+  height: 45px;
+  color: rgb(230, 227, 227);
+  font-size: 30px;
+  line-height: 45px;
+  margin-left: 20px;
+  text-align: center;
+  border-radius: 50%;
+  margin-top: 20px;
+  background: rgb(37, 37, 37);
+}
 
 </style>
