@@ -14,5 +14,6 @@ export default {
     //获取家居数据
     getFurniture:prefix+"/furniture",
     // 获取名
-    getData:prefix + "/userinfo"
+    getData:prefix + "/userinfo",
+    getDetails:prefix+"/details"
 }

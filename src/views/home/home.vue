@@ -92,9 +92,9 @@
         <van-grid-item 
          v-for="(item,index) in dataList" 
          :key="index"
-         @click="gotoDetail(item.goods_id)"
+         @click="gotoDetail"
          >
-          <a href="#"
+          <a
             ><img
               v-lazy="item.goods_big_logo"
             />
@@ -169,8 +169,7 @@ export default {
     onClickRight() {
       this.$router.push("/list");
     },
-    gotoDetail(val){
-      console.log(val);
+    gotoDetail(){
       this.$router.push("/detail")
     }
   },
