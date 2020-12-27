@@ -7,9 +7,10 @@ import classify from "./routes/classify"
 import center from "./routes/center"
 import detail from "./routes/detail";
 import login from "./routes/login";
-
+import cartRouter from "./routes/cart"
 const routes = [
-  list,
+  ...list,
+  cartRouter,
   home,
   classify,
   center,

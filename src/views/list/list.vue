@@ -5,7 +5,7 @@
       <van-tabs v-model="activeName">
         <van-tab title="男装" name="a">
           <van-grid :column-num="2" :gutter="25">
-            <van-grid-item v-for="(item,index) in manData" :key="index">
+            <van-grid-item v-for="(item,index) in manData" :key="index"  @click="gotoDetail">
               <div>
                 <img
                 v-lazy="item.goods_big_logo"
@@ -19,7 +19,7 @@
 
         <van-tab title="新品" name="b">
           <van-grid :column-num="2" :gutter="25">
-            <van-grid-item v-for="(item,index) in womenData" :key="index">
+            <van-grid-item v-for="(item,index) in womenData" :key="index"  @click="gotoDetail">
                <div>
                 <img
                 v-lazy="item.goods_big_logo"
@@ -33,7 +33,7 @@
 
         <van-tab title="热销" name="c">
           <van-grid :column-num="2" :gutter="25">
-            <van-grid-item v-for="(item,index) in hotData" :key="index">
+            <van-grid-item v-for="(item,index) in hotData" :key="index"  @click="gotoDetail">
               <div>
                 <img
                 v-lazy="item.goods_big_logo"
@@ -107,6 +107,9 @@ filters: {
     change() {
       this.$router.go(-1);
     },
+    gotoDetail(){
+      this.$router.push("/detail")
+    }
   },
 };
 </script>
