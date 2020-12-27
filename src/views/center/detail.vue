@@ -1,7 +1,7 @@
 <template>
   <div id="box">
     <!-- 头部 -->
-      <div class="left iconfont icon-right" @click="change"></div>
+    <div class="left iconfont icon-right" @click="change"></div>
     <div class="header">
       <span> 商品详情 </span>
     </div>
@@ -30,14 +30,27 @@
     </div>
     <div class="last">
       <van-grid>
-        <van-grid-item  text="商品介绍" />
-        <van-grid-item  text="文规格参数字" />
-        <van-grid-item  text="包装清单" />
-        <van-grid-item  text="售后服务" />
+        <van-grid-item text="商品介绍" />
+        <van-grid-item text="文规格参数字" />
+        <van-grid-item text="包装清单" />
+        <van-grid-item text="售后服务" />
       </van-grid>
     </div>
     <div>
-     
+      <van-goods-action>
+        <van-goods-action-icon icon="chat-o" text="客服" />
+        <van-goods-action-icon
+          icon="cart-o"
+          text="购物车"
+          @click="onClickIcon"
+        />
+        <van-goods-action-icon icon="shop-o" text="店铺" />
+        <van-goods-action-button
+          type="danger"
+          text="立即购买"
+          @click="onClickIcon"
+        />
+      </van-goods-action>
     </div>
   </div>
 </template>
@@ -48,32 +61,35 @@
 import Vue from "vue";
 import "@/assets/ieon/iconfont.css";
 import { Collapse, CollapseItem, Grid, GridItem } from "vant";
+import { GoodsAction, GoodsActionIcon, GoodsActionButton, Toast } from "vant";
+
+Vue.use(GoodsAction);
+Vue.use(GoodsActionButton);
+Vue.use(GoodsActionIcon);
+Vue.use(Toast);
 Vue.use(Grid);
 Vue.use(GridItem);
 Vue.use(Collapse);
 Vue.use(CollapseItem);
 export default {
- 
   data() {
     return {
       activeNames: ["1"],
     };
   },
-   created () {
-        this.$store.commit('isShowFooter',false);
-        
-    },
-    beforeDestroy () {
-        this.$store.commit('isShowFooter',true)
-    },
-  methods:{
-     change() {
+  created() {
+    this.$store.commit("isShowFooter", false);
+  },
+ 
+  methods: {
+    change() {
       this.$router.go(-1);
     },
- 
-}
-  }
-
+    onClickIcon() {
+      this.$router.push("/cart");
+    },
+  },
+};
 </script>
 <style class="scss" scoped>
 .header {

@@ -100,9 +100,7 @@ filters: {
         })
     this.$store.commit("isShowFooter", false);
   },
-  beforeDestroy() {
-    this.$store.commit("isShowFooter", true);
-  },
+
   methods: {
     change() {
       this.$router.go(-1);

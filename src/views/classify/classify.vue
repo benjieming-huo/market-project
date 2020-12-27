@@ -35,11 +35,15 @@ export default {
       ]
     }
   },
+  created () {
+    this.$store.commit("isShowFooter" ,true)
+  },
   methods: {
     change(){
       this.$router.push("/list")
     }
   }
+
 };
 </script>
 <style lang="scss" scoped>
