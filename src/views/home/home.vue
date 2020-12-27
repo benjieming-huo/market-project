@@ -89,10 +89,14 @@
       </div>
 
       <van-grid :column-num="2" :gutter="25">
-        <van-grid-item  v-for="(item,index) in dataList" :key="index">
+        <van-grid-item 
+         v-for="(item,index) in dataList" 
+         :key="index"
+         @click="gotoDetail(item.goods_id)"
+         >
           <a href="#"
             ><img
-              :src="item.goods_big_logo"
+              v-lazy="item.goods_big_logo"
             />
             <p>{{item.goods_name | parsername}}</p>
              <p >已售:{{item.goods_number}}  | <i class="yuan"> {{item.goods_price}}&yen;</i></p>
@@ -163,8 +167,12 @@ export default {
       //   Toast("");
     },
     onClickRight() {
-      this.$router.push("./list");
+      this.$router.push("/list");
     },
+    gotoDetail(val){
+      console.log(val);
+      this.$router.push("/detail")
+    }
   },
 };
 </script>
@@ -186,7 +194,6 @@ export default {
   // font-size: 20px;
   line-height: 150px;
   text-align: center;
-  background-color: #39a9ed;
 }
 .my-swipe .van-swipe-item img {
   height: 100%;
@@ -203,7 +210,6 @@ export default {
 .swiper-slide {
   height: 200px;
   // width: 150px;
-  background: mediumslateblue;
   //   margin-right: 11px;
   display: inline-block;
   // width:8000px;

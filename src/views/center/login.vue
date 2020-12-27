@@ -28,6 +28,7 @@
           <div class="hand"></div>
           <div class="hand rgt"></div>
           <h1>用户登录</h1>
+
           <div class="form-group">
             <input required="required" class="form-control" v-model="mobile"/>
             <label class="form-label">手机号</label>
