@@ -128,7 +128,7 @@ export default {
 }
 .van-submit-bar{
   position: fixed;
-  bottom: 50px;
+  bottom: 0;
 }
 .leftd {
   width: 45px;

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="top">
-      <van-search v-model="value" placeholder="请输入搜索关键词" />
+      <van-search v-model="value" @click="goSearch" placeholder="请输入搜索关键词" />
     </div>
     <!-- 轮播图 -->
 
@@ -131,13 +131,14 @@ export default {
     return {
       value: "",
       dataList:[],
-      show:true
+      show:false
     };
   },
    mounted(){
         window.addEventListener('scroll',()=>{
-            let top =document.documentElement.scrollTop;
-            if(top>530){
+            let top =document.documentElement.scrollTop || 0;
+            console.log(top);
+            if(top>500){
                 this.show=true;
             }else{
                 this.show=false
@@ -171,6 +172,9 @@ export default {
     },
     gotoDetail(){
       this.$router.push("/detail")
+    },
+    goSearch(){
+      this.$router.push("/search")
     }
   },
 };

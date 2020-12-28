@@ -8,14 +8,19 @@ import center from "./routes/center"
 import detail from "./routes/detail";
 import login from "./routes/login"; 
 import cartRouter from "./routes/cart"
+import logonRouter from "./routes/logon"
+import { Toast } from 'vant';
+
+Vue.use(Toast);
 const routes = [
   list,
   cartRouter,
-  home,
+  ...home,
   classify,
   center,
   detail,
   login,
+  logonRouter,
   {
     path:"/",
    redirect: "/home"
@@ -30,11 +35,16 @@ const router = new VueRouter({
 
 // 路由守卫(全局)
 router.beforeEach((to,from,next)=>{
+  console.log(to.matched);
   let arr = [
-
+    "/cart"
   ];
   if(arr.includes(to.path)  && !localStorage.getItem("jwt") ){
-    router.push({path:"/login",query:{toUrl:to.fullPath}})
+    Toast("您还没有登录，请先登录")
+    setTimeout(() => {
+      router.push({path:"/login",query:{toUrl:to.fullPath}})
+    }, 2000);
+    
   }else{
     // 不满足不跳
     next();
