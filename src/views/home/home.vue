@@ -153,7 +153,7 @@ export default {
    }
   },
    created () {
-    this.$store.commit("isShowFooter", false);
+    this.$store.commit("isShowFooter", true);
     this.$http.get(url.getHome).then(ret=>{     
              this.dataList=ret.data;
               console.log(this.dataList);          
