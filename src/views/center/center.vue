@@ -5,7 +5,7 @@
     <div class="mypic"> 
       <img :src="userinfo.imginfo" v-if="userinfo.imginfo"/>
       <img  v-if="!userinfo.imginfo" src="../../assets/my.png" alt="" />
-      <h1 @click="change" v-if="!userinfo.username">欢迎登录</h1>
+      <h1  v-if="!userinfo.username"><span @click="change">欢迎登录/</span><span @click="logon">注册</span></h1>
       <h1 v-if="userinfo.username">{{userinfo.username}}</h1>
      
     </div>
@@ -86,6 +86,8 @@ export default {
     },
     to(){
       this.$router.push("/cart");
+    logon(){
+      this.$router.push("/logon");
     },
     footprint() {
       // console.log(111);
