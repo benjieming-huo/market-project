@@ -1,10 +1,15 @@
 // 指定代理的前缀
 let prefix = "/api/";
 
+
+//设置代理前缀
+let payoff="/apy";
+
 export default {
+    payoff,
     // 获取首页信息
     getHome:prefix+"/other",
-    getPHP: prefix +"/getAirPortInfo.php",
+    getPHP:payoff+"/getAirPortInfo.php",
     //获取其他数据
     getOther:prefix+"/home",
     //获取婴儿的数据

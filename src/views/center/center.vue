@@ -17,7 +17,7 @@
         ><img src="../../assets/商品订单.png" alt=""
       /></span>
       <span class="indent-indent">商品订单</span>
-      <span class="indent-all">查看全部></span>
+      <span class="indent-all" @click="to">查看全部></span>
       <hr />
     </div>
     <!--  组件 -->
@@ -84,12 +84,14 @@ export default {
     change() {
       this.$router.push("/login");
     },
-
+    to(){
+      this.$router.push("/cart");
+    },
     footprint() {
       // console.log(111);
     },
     address() {
-      console.log(222);
+      this.$router.push("/address");
     },
     after() {
       console.log(333);

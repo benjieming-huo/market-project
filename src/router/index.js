@@ -13,7 +13,7 @@ const routes = [
   cartRouter,
   home,
   classify,
-  center,
+  ...center,
   detail,
   login,
   {
@@ -31,7 +31,9 @@ const router = new VueRouter({
 // 路由守卫(全局)
 router.beforeEach((to,from,next)=>{
   let arr = [
-
+      "/address",
+      "/er_code",
+      "/edit"
   ];
   if(arr.includes(to.path)  && !localStorage.getItem("jwt") ){
     router.push({path:"/login",query:{toUrl:to.fullPath}})

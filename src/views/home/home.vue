@@ -131,16 +131,16 @@ export default {
     return {
       value: "",
       dataList:[],
-      show:true
+      show:false
     };
   },
    mounted(){
         window.addEventListener('scroll',()=>{
             let top =document.documentElement.scrollTop;
-            if(top>530){
-                this.show=true;
+            if(top<530){
+                this.show=false;
             }else{
-                this.show=false
+                this.show=true
             }
            
         })
