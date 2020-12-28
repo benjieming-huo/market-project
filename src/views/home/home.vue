@@ -135,13 +135,13 @@ export default {
     };
   },
    mounted(){
-        window.addEventListener('scroll',()=>{
+        window.addEventListener('scroll',()=>{      
             let top =document.documentElement.scrollTop || 0;
             console.log(top);
             if(top>500){
                 this.show=true;
             }else{
-                this.show=false
+                this.show=true
             }
            
         })

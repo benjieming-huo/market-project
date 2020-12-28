@@ -17,7 +17,7 @@ const routes = [
   cartRouter,
   ...home,
   classify,
-  center,
+  ...center,
   detail,
   login,
   logonRouter,
@@ -37,7 +37,11 @@ const router = new VueRouter({
 router.beforeEach((to,from,next)=>{
   console.log(to.matched);
   let arr = [
-    "/cart"
+
+      "/address",
+      "/er_code",
+      "/edit",
+     "/cart"
   ];
   if(arr.includes(to.path)  && !localStorage.getItem("jwt") ){
     Toast("您还没有登录，请先登录")

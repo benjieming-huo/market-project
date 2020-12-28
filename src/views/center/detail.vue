@@ -2,26 +2,25 @@
   <div id="box">
     <!-- 头部 -->
     <div class="left iconfont icon-right" @click="change"></div>
-    <div class="header">
-      <span> 商品详情 </span>
-    </div>
-    <!-- 图片 -->
-    <div class="BigImg">
-      <img
-        class="BigImg_img"
-        src="https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2873789948,317726200&fm=26&gp=0.jpg"
-        alt=""
-      />
-    </div>
-
-    <!-- 详情介绍 -->
     <div>
-      <p>
-        ....................................商品详情介绍......................
-      </p>
-      <div class="explain">
-        <span>￥100</span>
-        已优惠：￥200
+      <div class="header">
+        
+      </div>
+      <!-- 图片 -->
+      <div class="BigImg">
+        <img class="BigImg_img" :src="list.goods_big_logo" />
+      </div>
+
+      <!-- 详情介绍 -->
+      <div>
+        <p>
+          ....................................商品详情介绍......................
+        </p>
+        <div class="explain">
+        <span> {{list.goods_name}} </span>
+          <span>&yen;{{list.goods_price}}</span>
+          已优惠：￥34
+        </div>
       </div>
     </div>
 
@@ -31,7 +30,7 @@
     <div class="last">
       <van-grid>
         <van-grid-item text="商品介绍" />
-        <van-grid-item text="文规格参数字" />
+        <van-grid-item text="文规格参数字"></van-grid-item>
         <van-grid-item text="包装清单" />
         <van-grid-item text="售后服务" />
       </van-grid>
@@ -46,9 +45,9 @@
         />
         <van-goods-action-icon icon="shop-o" text="店铺" />
         <van-goods-action-button
+        @click="onClickIcon"
           type="danger"
-          text="立即购买"
-          @click="onClickIcon"
+          text="加入购物车"
         />
       </van-goods-action>
     </div>
@@ -62,7 +61,7 @@ import Vue from "vue";
 import "@/assets/ieon/iconfont.css";
 import { Collapse, CollapseItem, Grid, GridItem } from "vant";
 import { GoodsAction, GoodsActionIcon, GoodsActionButton, Toast } from "vant";
-
+import url from "@/config/uri";
 Vue.use(GoodsAction);
 Vue.use(GoodsActionButton);
 Vue.use(GoodsActionIcon);
@@ -75,27 +74,45 @@ export default {
   data() {
     return {
       activeNames: ["1"],
+      list: {},
     };
   },
   created() {
+    this.$http.get(url.getDetails).then((ret) => {
+      this.list=ret.data;
+      console.log(this.list);
+    });
     this.$store.commit("isShowFooter", false);
   },
- 
+
   methods: {
     change() {
       this.$router.go(-1);
     },
     onClickIcon() {
       this.$router.push("/cart");
+       window.localStorage.setItem()
     },
   },
 };
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style class="scss" scoped>
 .header {
   border-bottom: 1px solid #ccc;
   padding-bottom: 6px;
-  padding: 6px;
 }
 .left {
   width: 45px;
@@ -117,16 +134,18 @@ span {
 .BigImg {
   position: relative;
   margin-top: 10px;
-  width: 372px;
+   width: 100%;
+
   height: 260px;
   text-align: center;
+  overflow: hidden;
 }
 .BigImg_img {
   position: absolute;
   left: 50%;
   top: 50%;
+  width: 100%;
   transform: translate(-50%, -50%);
-  width: 174px;
   margin-top: 10px;
   vertical-align: middle;
 }
