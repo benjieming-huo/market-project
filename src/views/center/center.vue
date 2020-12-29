@@ -5,7 +5,7 @@
     <div class="mypic"> 
       <img :src="userinfo.imginfo" v-if="userinfo.imginfo"/>
       <img  v-if="!userinfo.imginfo" src="../../assets/my.png" alt="" />
-      <h1  v-if="!userinfo.username"><span @click="change">欢迎登录/</span><span @click="logon">注册</span></h1>
+      <h1  v-if="!userinfo.username"><span @click="change">欢迎登录/</span></h1>
       <h1 v-if="userinfo.username">{{userinfo.username}}</h1>
      
     </div>
@@ -32,6 +32,7 @@
     <!-- 我的地址 address  -->
     <!-- 我的售后 after -->
     <!-- 联系客服 service -->
+   
     <div class="list-box">
       <span>我的足迹</span>&nbsp;
       <span @click="footprint">></span>
@@ -52,12 +53,12 @@
       <span >></span>
       <hr />
     </div>
+     
   </div>
 </template>
 <script>
 // 导入菜单组件
 import listGuide from "../../components/list-guide";
-import Vue from "vue";
 import url from "@/config/uri";
 export default {
   data() {
@@ -68,7 +69,7 @@ export default {
   },
   created() {
     let jwt = localStorage.getItem("jwt");
-        
+     this.$store.commit("isShowFooter",true);  
     if (jwt) {
       console.log(jwt);
       this.$http.get(url.getData).then((ret) => {
@@ -80,12 +81,14 @@ export default {
     }
   },
   methods: {
+    
     //跳转登录
     change() {
       this.$router.push("/login");
     },
     to(){
       this.$router.push("/cart");
+    },
     logon(){
       this.$router.push("/logon");
     },

@@ -42,7 +42,7 @@ export default new Vuex.Store({
     },
     changeList(state,val,id){
       state.List[id]=val;
-     
+     console.log(val,id);
     },
   },
   actions: {

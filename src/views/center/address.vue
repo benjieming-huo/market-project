@@ -31,10 +31,14 @@ export default {
   },
   computed: {
     ...mapState(["list","disabledList"]),
+
   },
 
   methods: {
      ...mapMutations(["changeList"]),
+     chn(){
+       this.changeList()
+     },
     goback(){
       this.$router.go(-1);
     },

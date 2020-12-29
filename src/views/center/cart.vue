@@ -87,7 +87,7 @@ export default {
       num: 1,
       database,
       ischeck:false,
-      checkarr,
+      checkarr:[]
     };
   },
   methods: {
@@ -147,8 +147,12 @@ export default {
     computed: {
         totprice: function () {      
             let total = 0;
+            console.log(this.database)
             this.database.forEach(v => {
+                 console.log(this.checkarr);
+
                 if (this.checkarr.includes(v.id)) {
+                  console.log(1)
                     total += v.price * v.num;
                 }
             });
