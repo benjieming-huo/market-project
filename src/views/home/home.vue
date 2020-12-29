@@ -36,6 +36,7 @@
     <div :class="{topheader: show}">
       <div class="xptj">
         <van-nav-bar
+        
           left-text="新品推荐"
           right-text="查看更多"
           @click-left="onClickLeft"
@@ -137,7 +138,6 @@ export default {
    mounted(){
         window.addEventListener('scroll',()=>{      
             let top =document.documentElement.scrollTop || 0;
-            console.log(top);
             if(top<500){
                 this.show=false;
             }else{
@@ -157,7 +157,6 @@ export default {
     this.$store.commit("isShowFooter", true);
     this.$http.get(url.getHome).then(ret=>{     
              this.dataList=ret.data;
-              console.log(this.dataList);          
         })
   },
   components: {
@@ -165,7 +164,6 @@ export default {
   },
   methods: {
     onClickLeft() {
-      //   Toast("");
     },
     onClickRight() {
       this.$router.push("/list");

@@ -28,7 +28,7 @@
             <button @click="reduce(item)">-</button><input class="a" maxlength="2" type="text" v-model="database[index].num"><button @click="add(item)">+</button>
          </div>
       </div>
-      <div class="right">×</div>
+      <div class="right" @click="del(index)">×</div>
     </div>
     </div>
     <!-- 结算 -->
@@ -91,6 +91,9 @@ export default {
     };
   },
   methods: {
+     del(index){
+    this.database.splice(index,1)
+  },
    change() {
       this.$router.go(-1);
     },
@@ -147,12 +150,10 @@ export default {
     computed: {
         totprice: function () {      
             let total = 0;
-            console.log(this.database)
+           
             this.database.forEach(v => {
-                 console.log(this.checkarr);
 
                 if (this.checkarr.includes(v.id)) {
-                  console.log(1)
                     total += v.price * v.num;
                 }
             });
