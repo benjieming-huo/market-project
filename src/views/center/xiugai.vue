@@ -1,8 +1,7 @@
 <template>
-  <div id="app">
-   <div @click="goback">返回</div>
-    <van-address-edit
-  :area-list="areaList"
+    <div>
+        <van-address-edit
+        :area-list="areaList"
   show-postal
   show-set-default
   show-search-result
@@ -10,23 +9,18 @@
   :area-columns-placeholder="['请选择', '请选择', '请选择']"
   @save="onSave"
   @change-detail="onChangeDetail"
-/>
-  </div>
+        />
+    </div>
 </template>
 <script>
-import Vue from "vue";
-
-import { AddressEdit , Toast} from "vant";
-Vue.use(AddressEdit);
+import Vue from 'vue';
+import { AddressEdit ,Toast} from 'vant';
 Vue.use(Toast);
-
-
-
+Vue.use(AddressEdit);
 export default {
-
-  data() {
+     data() {
     return {
-      areaList:{
+            areaList:{
          province_list: {
     110000: '北京市',
     120000: '天津市'
@@ -50,37 +44,47 @@ export default {
   
   }
       },
-      searchResult: [],
       list:[],
-      id:0,
+      searchResult: [],
     };
   },
   created () {
+    // this.$route.params.id;
+    //  console.log(this.$route);
     this.$store.commit("isShowFooter" ,false)
-    this.list=(JSON.parse(window.localStorage.getItem("address"))) || [];
+    // let arr=JSON.parse( window.localStorage.getItem("address"));
+    // console.log(arr);
+    // arr.forEach(v=>{
+    //   // console.log(v);
+    //   if( this.$route.params.id===v.id){
+    //     console.log(v);
+    //   }
+    // })
   },
- methods: {
-   goback(){
-      this.$router.go(-1);
-    },
-  onSave(content) { 
-    this.list.push(
-      {
-        id:this.list.length+3,
+  methods: {
+    onSave(content) {
+      this.$route.params.id;
+      let obj = {
+        id: this.$route.params.id,
         name:content.name,
         tel:content.tel,
         address:content.addressDetail,
-    }
-    );
-      window.localStorage.setItem("address",JSON.stringify(this.list));
-       this.$router.push("/address");
-      console.log(this.list);
+      }
+     
+    let arr=JSON.parse( window.localStorage.getItem("address"));
+    arr.forEach((v,k)=>{
+      if( this.$route.params.id==v.id){
+        arr[k]=obj;
+     
+      }
+    })
+    window.localStorage.setItem("address",JSON.stringify(arr));
+    Toast('修改成功');
+    setTimeout(()=>{
+      this.$router.push("/address")
+    },2000)
     },
-    
-
-    onDelete() {
-      Toast('delete');
-    },
+  
     onChangeDetail(val) {
       if (val) {
         this.searchResult = [
@@ -89,12 +93,14 @@ export default {
             address: '杭州市西湖区',
           },
         ];
-      } else 
+      } else {
         this.searchResult = [];
       }
-    },
-  
-};
+
+  },
+}
+}
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+
 </style>

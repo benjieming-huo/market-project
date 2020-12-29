@@ -37,7 +37,6 @@ export default {
     },
      watch: {
          $route:function(val){
-             console.log(val);
              this.active=this.url.indexOf(val.fullPath)>0 ? this.url.indexOf(val.fullPath) : 0;
          }
     },

@@ -35,7 +35,6 @@ const router = new VueRouter({
 
 // 路由守卫(全局)
 router.beforeEach((to,from,next)=>{
-  console.log(to.matched);
   let arr = [
 
       "/address",

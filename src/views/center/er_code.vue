@@ -20,7 +20,7 @@ export default {
     created () {
         fetch('https://m.28sjw.com/order/getQR.php',{
             method:"post",
-            body:"_s=1&_f=0.01&_t=1",
+            body:"_s=1&_f=0.01&_t=2",
             headers:{
                 "Content-Type":"application/x-www-form-urlencoded"
             },
@@ -39,8 +39,13 @@ export default {
                 setTimeout(()=>{
                 this.$http.get(`https://m.28sjw.com/order/orderPayStatusCheck.php?_oid=${this.order_id}`).then(ret=>{
                     console.log(ret);
-                    if(ret.status==200){
-                        Toast('支付成功');
+                    if(ret.data.status==0){
+                        Toast('支付成功，即将跳转');
+                        setTimeout(()=>{
+                            this.$router.push("/center")
+                        },2000)
+                    }else{
+                        Toast('支付失败');
                     }
                 })
             },1000)

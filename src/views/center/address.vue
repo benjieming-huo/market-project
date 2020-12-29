@@ -13,8 +13,7 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
-import {mapMutations} from "vuex";
+// import { mapState } from "vuex";
 import Vue from 'vue';
 import { AddressList } from 'vant';
 import { Toast } from 'vant';
@@ -25,28 +24,51 @@ Vue.use(Toast);
 export default {
    data() {
     return {
+       list: [
+      {
+        id: '1',
+        name: '张三',
+        tel: '13000000000',
+        address: '浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室',
+        isDefault: true,
+      },
+      {
+        id: '2',
+        name: '李四',
+        tel: '1310000000',
+        address: '浙江省杭州市拱墅区莫干山路 50 号',
+      },
+    ],
+      disabledList: [
+        {
+          id: '3',
+          name: '王五',
+          tel: '1320000000',
+          address: '浙江省杭州市滨江区江南大道 15 号',
+        },
+      ],
       chosenAddressId: '1',
-      datalist:[],
+      
     };
   },
-  computed: {
-    ...mapState(["list","disabledList"]),
-
+  created () {
+    if(window.localStorage.getItem("address")){
+      let arr=JSON.parse(window.localStorage.getItem("address"));
+      arr.forEach(v=>{
+        this.list.push(v);
+      })
+    }
   },
-
   methods: {
-     ...mapMutations(["changeList"]),
-     chn(){
-       this.changeList()
-     },
     goback(){
-      this.$router.go(-1);
+      this.$router.push("/center");
     },
     onAdd() {
       this.$router.push("/edit")
     },
     onEdit(item, index) {
-    Toast('编辑地址:' + index);
+      console.log(item);
+       this.$router.push("/xiugai/"+ `${item.id}`)
     },
   },
 }
